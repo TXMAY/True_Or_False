@@ -3,13 +3,17 @@
 #include <string>
 #include <conio.h>
 #include "windows.h"
+#include <time.h>
 
-int val1 = 0;
-int val2 = 0;
-int num_oper = 0;
+int val1;
+int val2;
+int num_oper;
 std::string str_oper;
 bool answer = NULL;
 bool key;
+int life;
+int score;
+
 void SetRandomValue()
 {
 	std::random_device rd;
@@ -19,33 +23,33 @@ void SetRandomValue()
 	val1 = ran_val(gen);
 	val2 = ran_val(gen);
 	num_oper = ran_oper(gen);
-	}
-	void SetOperator()
+}
+void SetOperator()
+{
+	switch (num_oper)
 	{
-		switch (num_oper)
-		{
-		case 1:
-			str_oper = "<";
-			break;
-		case 2:
-			str_oper = ">";
-			break;
-		case 3:
-			str_oper = "<=";
-			break;
-		case 4:
-			str_oper = ">=";
-			break;
-		case 5:
-			str_oper = "!=";
-			break;
-		case 6:
-			str_oper = "==";
-			break;
-		default:
-			break;
-		}
+	case 1:
+		str_oper = "<";
+		break;
+	case 2:
+		str_oper = ">";
+		break;
+	case 3:
+		str_oper = "<=";
+		break;
+	case 4:
+		str_oper = ">=";
+		break;
+	case 5:
+		str_oper = "!=";
+		break;
+	case 6:
+		str_oper = "==";
+		break;
+	default:
+		break;
 	}
+}
 void PrintRandomValue()
 {
 	std::cout << val1 << " " << str_oper << " " << val2 << std::endl;
@@ -77,9 +81,15 @@ void PrintAnswer()
 		break;
 	}
 	if (answer == key)
+	{
 		std::cout << "정답" << std::endl;
+		++score;
+	}
 	else
+	{
 		std::cout << "오답" << std::endl;
+		--life;
+	}
 }
 
 
@@ -99,9 +109,15 @@ void GetKey()
 		}
 	}
 }
+void GameOver()
+{
+	system("cls");
+	std::cout << "Game over!\nScore : " << score << std::endl;
+}
 
 int main()
 {
+	life = 3;
 	while (true)
 	{
 		SetRandomValue();
@@ -109,8 +125,11 @@ int main()
 		PrintRandomValue();
 		GetKey();
 		PrintAnswer();
+		if (life <= 0)
+			break;
 		Sleep(1000);
 		system("cls");
 	}
+	GameOver();
 }
 
