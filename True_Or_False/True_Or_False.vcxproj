@@ -145,6 +145,7 @@
     <ClCompile Include="Setting.cpp" />
     <ClCompile Include="Print.cpp" />
     <ClCompile Include="System.cpp" />
+    <ClCompile Include="Console.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h" />

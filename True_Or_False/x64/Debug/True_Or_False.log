@@ -1,2 +1,7 @@
-﻿  Start.cpp
-  True_Or_False.vcxproj -> C:\Users\pc\Desktop\개인 프로젝트\True_Or_False\x64\Debug\True_Or_False.exe
+﻿  Print.cpp
+  Setting.cpp
+  Start.cpp
+C:\Users\pc\Desktop\개인 프로젝트\True_Or_False\Start.cpp(8,2): error C3861: 'Fullscreen': 식별자를 찾을 수 없습니다.
+  System.cpp
+  main.cpp
+  코드를 생성하고 있습니다...

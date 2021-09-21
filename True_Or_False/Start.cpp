@@ -5,6 +5,9 @@ void System::Start()
 {
 	life = 3;
 	score = 0;
+	Setscreen();
+	PrintMainMenu();
+	SetMainMenu();
 	while (true)
 	{
 		SetRandomValue();
