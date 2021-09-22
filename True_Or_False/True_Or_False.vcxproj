@@ -140,14 +140,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Start.cpp" />
-    <ClCompile Include="Setting.cpp" />
-    <ClCompile Include="Print.cpp" />
-    <ClCompile Include="System.cpp" />
-    <ClCompile Include="Console.cpp" />
+    <ClCompile Include="Main_Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Main_Menu.h" />
     <ClInclude Include="System.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

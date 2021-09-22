@@ -12,7 +12,6 @@ private:
 	int num_oper;
 	int life;
 	int score;
-	int menu;
 private:
 	bool answer = NULL;
 	bool key;
@@ -21,8 +20,6 @@ private:
 private:
 	std::string str_oper;
 private:
-	COORD pos;
-	COORD menu_pos;
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 private:
 
@@ -34,8 +31,6 @@ public:
 	void GetKey();
 	void GameOver();
 	void Start();
-	void Setscreen();
-	void PrintMainMenu();
-	void SetMainMenu();
+	void PlayingGame();
 };
 #endif

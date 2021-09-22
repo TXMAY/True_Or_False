@@ -1,8 +1,11 @@
 #include "System.h"
+#include "Main_Menu.h"
 #include <Windows.h>
 
 int main()
 {
 	System sys;
-	sys.Start();
+	MainMenu mm;
+	mm.PlayingMainMenu();
+	sys.PlayingGame();
 }
