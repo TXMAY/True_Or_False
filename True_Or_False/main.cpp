@@ -1,10 +1,10 @@
-#include "System.h"
+#include "Game.h"
 #include "Main_Menu.h"
 #include <Windows.h>
 
 int main()
 {
-	System sys;
+	Game sys;
 	MainMenu mm;
 	mm.PlayingMainMenu();
 	sys.PlayingGame();

@@ -1,10 +1,10 @@
-#ifndef __SYSTEM_HPP__
-#define __SYSTEM_HPP__
+#ifndef __GAME_HPP__
+#define __GAME_HPP__
 #include <string>
 #include <random>
 #include <Windows.h>
 
-class System
+class Game
 {
 private:
 	int val1;
@@ -17,12 +17,9 @@ private:
 	bool key;
 private:
 	double timer;
+	double minus_time;
 private:
 	std::string str_oper;
-private:
-	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-private:
-
 public:
 	void SetRandomValue();
 	void SetOperator();
@@ -30,7 +27,6 @@ public:
 	void PrintAnswer();
 	void GetKey();
 	void GameOver();
-	void Start();
 	void PlayingGame();
 };
 #endif

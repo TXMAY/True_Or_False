@@ -1,7 +1,7 @@
-#include "System.h"
+#include "Game.h"
 #include <iostream>
 
-void System::SetRandomValue()
+void Game::SetRandomValue()
 {
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -11,7 +11,7 @@ void System::SetRandomValue()
 	val2 = ran_val(gen);
 	num_oper = ran_oper(gen);
 }
-void System::SetOperator()
+void Game::SetOperator()
 {
 	switch (num_oper)
 	{
@@ -37,15 +37,16 @@ void System::SetOperator()
 		break;
 	}
 }
-void System::PrintRandomValue()
+void Game::PrintRandomValue()
 {
-	std::cout << val1 << " " << str_oper << " " << val2 << std::endl;
+	std::cout << val1 << " " << str_oper << " " << val2 <<std::endl;
 }
-void System::GetKey()
+void Game::GetKey()
 {
-	timer = 3.0;
+	timer = 3.0 - minus_time;
 	while (timer >= 0)
 	{
+
 		if (GetAsyncKeyState(VK_LEFT))
 		{
 			key = true;
@@ -60,7 +61,7 @@ void System::GetKey()
 		timer -= 0.1;
 	}
 };
-void System::PrintAnswer()
+void Game::PrintAnswer()
 {
 	switch (num_oper)
 	{
@@ -94,6 +95,8 @@ void System::PrintAnswer()
 	{
 		std::cout << "Á¤´ä" << std::endl;
 		++score;
+		if (score % 5 == 0 && score <= 25)
+			minus_time += 0.1;
 	}
 	else
 	{
@@ -101,15 +104,16 @@ void System::PrintAnswer()
 		--life;
 	}
 }
-void System::GameOver()
+void Game::GameOver()
 {
 	system("cls");
 	std::cout << "Game over!\nScore : " << score << std::endl;
 }
-void System::PlayingGame()
+void Game::PlayingGame()
 {
 	life = 3;
 	score = 0;
+	minus_time = 0.0;
 	while (life > 0)
 	{
 		SetRandomValue();
