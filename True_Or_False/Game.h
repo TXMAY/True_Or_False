@@ -4,6 +4,9 @@
 #include <random>
 #include <Windows.h>
 
+#define DIFFICULTY_MAX 4
+#define DIFFICULTY_MIN 0
+
 class Game
 {
 private:
@@ -12,12 +15,15 @@ private:
 	int num_oper;
 	int life;
 	int score;
+	int difficulty;
 private:
 	bool answer = NULL;
 	bool key;
 private:
 	double timer;
 	double minus_time;
+private:
+	COORD pos;
 private:
 	std::string str_oper;
 public:
@@ -28,5 +34,6 @@ public:
 	void GetKey();
 	void GameOver();
 	void PlayingGame();
+	void SetDifficulty();
 };
 #endif

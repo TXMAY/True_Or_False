@@ -28,7 +28,7 @@ void MainMenu::PrintMainMenu()
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 	std::cout << ("  옵션") << std::endl;
 }
-void MainMenu::PrintConsole(COORD pos, int cur)
+void MainMenu::MainMenuConsole(COORD pos, int cur)
 {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 	switch (cur)
@@ -49,7 +49,6 @@ void MainMenu::HowToPlay()
 	std::cout << "수식을 보고 그 식이 참인지 거짓인지를 맞춰주세요.(← : 참, → : 거짓)" << std::endl;
 	std::cout << "라이프는 3개이며, 3초내에 정답을 맞춰야 합니다." << std::endl;
 	std::cout << "정답을 맞출수록 제한 시간이 짧아집니다." << std::endl;
-	std::cout << "메인 메뉴로 돌아가시려면 esc키를 눌러주세요" << std::endl;
 	while (true)
 	{
 		if (GetAsyncKeyState(VK_ESCAPE) & 0x8000)
@@ -67,44 +66,44 @@ void MainMenu::SetMainMenu()
 	{
 		if (GetAsyncKeyState(VK_UP)&0x0001)
 		{
-			select = 0;
-			PrintConsole(menu_pos, select);
+			cursor = 0;
+			MainMenuConsole(pos, cursor);
 			--menu;
 		}
 		if (GetAsyncKeyState(VK_DOWN)&0x0001)
 		{
-			select = 0;
-			PrintConsole(menu_pos, select);
+			cursor = 0;
+			MainMenuConsole(pos, cursor);
 			++menu;
 		}
-		if (menu >= 4)
+		if (menu >= MENU_MAX)
 		{
-			select = 0;
-			PrintConsole(menu_pos, select);
+			cursor = 0;
+			MainMenuConsole(pos, cursor);
 			menu = 1;
 		}
-		if (menu <= 0)
+		if (menu <= MENU_MIN)
 		{
-			select = 0;
-			PrintConsole(menu_pos, select);
+			cursor = 0;
+			MainMenuConsole(pos, cursor);
 			menu = 3;
 		}
 		switch (menu)
 		{
 		case 1:
-			menu_pos = { 36,10 };
-			select = 1;
-			PrintConsole(menu_pos, select);
+			pos = { 36,10 };
+			cursor = 1;
+			MainMenuConsole(pos, cursor);
 			break;
 		case 2:
-			menu_pos = { 36,12 };
-			select = 1;
-			PrintConsole(menu_pos, select);
+			pos = { 36,12 };
+			cursor = 1;
+			MainMenuConsole(pos, cursor);
 			break;
 		case 3:
-			menu_pos = { 38,14 };
-			select = 1;
-			PrintConsole(menu_pos, select);
+			pos = { 38,14 };
+			cursor = 1;
+			MainMenuConsole(pos, cursor);
 			break;
 		default:
 			break;
@@ -122,6 +121,7 @@ void MainMenu::SetMainMenu()
 		}
 	}
 }
+
 void MainMenu::PlayingMainMenu()
 {
 	Setscreen();

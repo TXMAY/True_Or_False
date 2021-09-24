@@ -46,7 +46,6 @@ void Game::GetKey()
 	timer = 3.0 - minus_time;
 	while (timer >= 0)
 	{
-
 		if (GetAsyncKeyState(VK_LEFT))
 		{
 			key = true;
@@ -96,7 +95,22 @@ void Game::PrintAnswer()
 		std::cout << "정답" << std::endl;
 		++score;
 		if (score % 5 == 0 && score <= 25)
-			minus_time += 0.1;
+		{
+			switch (difficulty)
+			{
+			case 1:
+				minus_time += 0.1;
+				break;
+			case 2:
+				minus_time += 0.2;
+				break;
+			case 3:
+				minus_time += 0.3;
+				break;
+			default:
+				break;
+			}
+		}
 	}
 	else
 	{
@@ -109,11 +123,61 @@ void Game::GameOver()
 	system("cls");
 	std::cout << "Game over!\nScore : " << score << std::endl;
 }
+void Game::SetDifficulty()
+{
+	difficulty = 2;
+	std::cout << ("난이도 선택") << std::endl;
+	while (true)
+	{
+		if (GetAsyncKeyState(VK_LEFT) & 0x0001)
+		{
+			--difficulty;
+		}
+		if (GetAsyncKeyState(VK_RIGHT) & 0x0001)
+		{
+			++difficulty;
+		}
+		if (difficulty >= DIFFICULTY_MAX)
+		{
+			difficulty = 1;
+		}
+		if (difficulty <= DIFFICULTY_MIN)
+		{
+			difficulty = 3;
+		}
+		switch (difficulty)
+		{
+		case 1:
+			pos = { 5,4 };
+			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+			std::cout << ("◀ easy ▶") << std::endl;
+			break;
+		case 2:
+			pos = { 2,4 };
+			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+			std::cout << ("◀ normal ▶") << std::endl;
+			break;
+		case 3:
+			pos = { 5,4 };
+			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+			std::cout << ("◀ hard ▶") << std::endl;
+			break;
+		default:
+			break;
+		}
+		if (GetAsyncKeyState(VK_RETURN) & 0x0001)
+		{
+			break;
+		}
+	}
+	system("cls");
+}
 void Game::PlayingGame()
 {
 	life = 3;
 	score = 0;
-	minus_time = 0.0;
+	minus_time = 0;
+	SetDifficulty();
 	while (life > 0)
 	{
 		SetRandomValue();

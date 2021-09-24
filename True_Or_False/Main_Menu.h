@@ -2,14 +2,16 @@
 #define __MAIN_MENU_HPP__
 #include <Windows.h>
 
+#define MENU_MAX 4
+#define MENU_MIN 0
+
 class MainMenu
 {
 private:
 	int menu;
-	int select;
+	int cursor;
 private:
 	COORD pos;
-	COORD menu_pos;
 private:
 	HANDLE ConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 private:
@@ -20,7 +22,6 @@ public:
 	void SetMainMenu();
 	void HowToPlay();
 	void PlayingMainMenu();
-	void PrintConsole(COORD pos, int cur);
-	
+	void MainMenuConsole(COORD pos, int cur);
 };
 #endif
