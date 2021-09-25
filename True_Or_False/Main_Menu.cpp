@@ -1,11 +1,11 @@
-#include "Main_Menu.h"
+#include "Main_Menu.hpp"
+#include "Common.hpp"
 #include <iostream>
 
 void MainMenu::Setscreen()
 {
 	system("mode con cols=87 lines=16 | title True Or False");
 }
-
 void MainMenu::PrintMainMenu()
 {
 	ConsoleCursor.bVisible = 0;
@@ -45,10 +45,12 @@ void MainMenu::MainMenuConsole(COORD pos, int cur)
 }
 void MainMenu::HowToPlay()
 {
-	std::cout << "게임이 시작되면 화면에 수식이 나타납니다." << std::endl;
-	std::cout << "수식을 보고 그 식이 참인지 거짓인지를 맞춰주세요.(← : 참, → : 거짓)" << std::endl;
-	std::cout << "라이프는 3개이며, 3초내에 정답을 맞춰야 합니다." << std::endl;
-	std::cout << "정답을 맞출수록 제한 시간이 짧아집니다." << std::endl;
+	pos = { 0,5 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	std::cout << "                        게임이 시작되면 화면에 수식이 나타납니다.                      " << std::endl;
+	std::cout << "           수식을 보고 그 식이 참인지 거짓인지를 맞춰주세요.(← : 참, → : 거짓)         " << std::endl;
+	std::cout << "                    라이프는 3개이며, 3초내에 정답을 맞춰야 합니다.                    " << std::endl;
+	std::cout << "    정답을 맞출수록 제한 시간이 짧아집니다(easy : -0.1, normal : -0.2, hard : -0.3).   " << std::endl;
 	while (true)
 	{
 		if (GetAsyncKeyState(VK_ESCAPE) & 0x8000)
@@ -64,13 +66,13 @@ void MainMenu::SetMainMenu()
 
 	while (true)
 	{
-		if (GetAsyncKeyState(VK_UP)&0x0001)
+		if (GetAsyncKeyState(VK_UP) & 0x0001)
 		{
 			cursor = 0;
 			MainMenuConsole(pos, cursor);
 			--menu;
 		}
-		if (GetAsyncKeyState(VK_DOWN)&0x0001)
+		if (GetAsyncKeyState(VK_DOWN) & 0x0001)
 		{
 			cursor = 0;
 			MainMenuConsole(pos, cursor);
@@ -121,7 +123,6 @@ void MainMenu::SetMainMenu()
 		}
 	}
 }
-
 void MainMenu::PlayingMainMenu()
 {
 	Setscreen();

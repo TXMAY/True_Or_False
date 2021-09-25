@@ -1,12 +1,89 @@
-#include "Game.h"
+#include "Game.hpp"
+#include "Common.hpp"
 #include <iostream>
 
+void Game::SetDifficulty()
+{
+	difficulty = NORMAL;
+	pos = { 36,5 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	std::cout << ("난이도 선택") << std::endl;
+	while (true)
+	{
+		if (GetAsyncKeyState(VK_LEFT) & 0x0001)
+		{
+			--difficulty;
+		}
+		if (GetAsyncKeyState(VK_RIGHT) & 0x0001)
+		{
+			++difficulty;
+		}
+		if (difficulty >= DIFFICULTY_MAX)
+		{
+			difficulty = EASY;
+		}
+		if (difficulty <= DIFFICULTY_MIN)
+		{
+			difficulty = HARD;
+		}
+		switch (difficulty)
+		{
+		case EASY:
+			pos = { 36,10 };
+			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+			std::cout << (" ◀ easy ▶ ") << std::endl;
+			break;
+		case NORMAL:
+			pos = { 36,10 };
+			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+			std::cout << ("◀ normal ▶") << std::endl;
+			break;
+		case HARD:
+			pos = { 36,10 };
+			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+			std::cout << (" ◀ hard ▶ ") << std::endl;
+			break;
+		default:
+			break;
+		}
+		if (GetAsyncKeyState(VK_RETURN) & 0x0001)
+		{
+			play_game = true;
+			system("cls");
+			break;
+		}
+		if (GetAsyncKeyState(VK_ESCAPE) & 0x0001)
+		{
+			play_game = false;
+			system("cls");
+			break;
+		}
+	}
+	system("cls");
+}
 void Game::SetRandomValue()
 {
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_int_distribution<int> ran_val(0, 9);
-	std::uniform_int_distribution<int> ran_oper(1, 6);
+	std::uniform_int_distribution<int> ran_val;
+	std::uniform_int_distribution<int> ran_oper;
+	switch (difficulty)
+	{
+	case EASY:
+		ran_val.param(std::uniform_int_distribution<int>::param_type(0, 9));
+		ran_oper.param(std::uniform_int_distribution<int>::param_type(1, 2));
+		break;
+	case NORMAL:
+		ran_val.param(std::uniform_int_distribution<int>::param_type(0, 49));
+		ran_oper.param(std::uniform_int_distribution<int>::param_type(1, 4));
+		break;
+	case HARD:
+		ran_val.param(std::uniform_int_distribution<int>::param_type(0, 99));
+		ran_oper.param(std::uniform_int_distribution<int>::param_type(1, 6));
+		break;
+	default:
+		break;
+	}
 	val1 = ran_val(gen);
 	val2 = ran_val(gen);
 	num_oper = ran_oper(gen);
@@ -39,7 +116,7 @@ void Game::SetOperator()
 }
 void Game::PrintRandomValue()
 {
-	std::cout << val1 << " " << str_oper << " " << val2 <<std::endl;
+	std::cout << val1 << " " << str_oper << " " << val2 << std::endl;
 }
 void Game::GetKey()
 {
@@ -98,13 +175,13 @@ void Game::PrintAnswer()
 		{
 			switch (difficulty)
 			{
-			case 1:
+			case EASY:
 				minus_time += 0.1;
 				break;
-			case 2:
+			case NORMAL:
 				minus_time += 0.2;
 				break;
-			case 3:
+			case HARD:
 				minus_time += 0.3;
 				break;
 			default:
@@ -122,55 +199,15 @@ void Game::GameOver()
 {
 	system("cls");
 	std::cout << "Game over!\nScore : " << score << std::endl;
-}
-void Game::SetDifficulty()
-{
-	difficulty = 2;
-	std::cout << ("난이도 선택") << std::endl;
+	std::cout << "메인 메뉴로 돌아가려면 enter를 누르세요." << std::endl;
 	while (true)
 	{
-		if (GetAsyncKeyState(VK_LEFT) & 0x0001)
-		{
-			--difficulty;
-		}
-		if (GetAsyncKeyState(VK_RIGHT) & 0x0001)
-		{
-			++difficulty;
-		}
-		if (difficulty >= DIFFICULTY_MAX)
-		{
-			difficulty = 1;
-		}
-		if (difficulty <= DIFFICULTY_MIN)
-		{
-			difficulty = 3;
-		}
-		switch (difficulty)
-		{
-		case 1:
-			pos = { 5,4 };
-			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-			std::cout << ("◀ easy ▶") << std::endl;
-			break;
-		case 2:
-			pos = { 2,4 };
-			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-			std::cout << ("◀ normal ▶") << std::endl;
-			break;
-		case 3:
-			pos = { 5,4 };
-			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-			std::cout << ("◀ hard ▶") << std::endl;
-			break;
-		default:
-			break;
-		}
 		if (GetAsyncKeyState(VK_RETURN) & 0x0001)
 		{
+			system("cls");
 			break;
 		}
 	}
-	system("cls");
 }
 void Game::PlayingGame()
 {
@@ -178,7 +215,7 @@ void Game::PlayingGame()
 	score = 0;
 	minus_time = 0;
 	SetDifficulty();
-	while (life > 0)
+	while (life > 0 && play_game == true)
 	{
 		SetRandomValue();
 		SetOperator();
@@ -188,5 +225,6 @@ void Game::PlayingGame()
 		Sleep(1000);
 		system("cls");
 	}
-	GameOver();
+	if (play_game == true)
+		GameOver();
 }

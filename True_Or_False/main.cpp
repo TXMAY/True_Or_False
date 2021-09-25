@@ -1,11 +1,14 @@
-#include "Game.h"
-#include "Main_Menu.h"
+#include "Game.hpp"
+#include "Main_Menu.hpp"
 #include <Windows.h>
 
 int main()
 {
-	Game sys;
+	Game game;
 	MainMenu mm;
-	mm.PlayingMainMenu();
-	sys.PlayingGame();
+	while (true)
+	{
+		mm.PlayingMainMenu();
+		game.PlayingGame();
+	}
 }

@@ -145,8 +145,9 @@
     <ClCompile Include="Main_Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Main_Menu.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="Common.hpp" />
+    <ClInclude Include="Main_Menu.hpp" />
+    <ClInclude Include="Game.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
