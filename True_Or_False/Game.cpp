@@ -5,9 +5,10 @@
 void Game::SetDifficulty()
 {
 	difficulty = NORMAL;
-	pos = { 36,5 };
+	pos = { 35,5 };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 	std::cout << ("난이도 선택") << std::endl;
+	MadeByTXMAY();
 	while (true)
 	{
 		if (GetAsyncKeyState(VK_LEFT) & 0x0001)
@@ -116,19 +117,27 @@ void Game::SetOperator()
 }
 void Game::PrintRandomValue()
 {
-	std::cout << val1 << " " << str_oper << " " << val2 << std::endl;
+	pos = { 36,5 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	std::cout << val1;
+	pos = { 39,5 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	std::cout << str_oper;
+	pos = { 42,5 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	std::cout << val2 << std::endl;
 }
 void Game::GetKey()
 {
 	timer = 3.0 - minus_time;
 	while (timer >= 0)
 	{
-		if (GetAsyncKeyState(VK_LEFT))
+		if (GetAsyncKeyState(VK_LEFT) & 0x0001)
 		{
 			key = true;
 			break;
 		}
-		if (GetAsyncKeyState(VK_RIGHT))
+		if (GetAsyncKeyState(VK_RIGHT) & 0x0001)
 		{
 			key = false;
 			break;
@@ -162,8 +171,12 @@ void Game::PrintAnswer()
 	default:
 		break;
 	}
+	pos = { 38,10 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 	if (timer <= 0)
 	{
+		pos = { 36,10 };
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 		std::cout << "시간 초과" << std::endl;
 		--life;
 	}
@@ -198,8 +211,16 @@ void Game::PrintAnswer()
 void Game::GameOver()
 {
 	system("cls");
-	std::cout << "Game over!\nScore : " << score << std::endl;
+	pos = { 36,5 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	std::cout << "Game over!" << std::endl;
+	pos = { 36,7 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	std::cout << "Score : " << score << std::endl;
+	pos = { 22,9 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 	std::cout << "메인 메뉴로 돌아가려면 enter를 누르세요." << std::endl;
+	MadeByTXMAY();
 	while (true)
 	{
 		if (GetAsyncKeyState(VK_RETURN) & 0x0001)
@@ -217,6 +238,8 @@ void Game::PlayingGame()
 	SetDifficulty();
 	while (life > 0 && play_game == true)
 	{
+		MadeByTXMAY();
+		PrintInfo();
 		SetRandomValue();
 		SetOperator();
 		PrintRandomValue();
@@ -227,4 +250,16 @@ void Game::PlayingGame()
 	}
 	if (play_game == true)
 		GameOver();
+}
+void Game::PrintInfo()
+{
+	pos = { 0,0 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	std::cout << "Score : " << score << ("\nLife : ") << life << std::endl;
+}
+void Game::MadeByTXMAY()
+{
+	pos = { 0,15 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	std::cout << ("Made by TXMAY") << std::endl;
 }

@@ -13,5 +13,4 @@ const static int HARD = 3;
 const static int DIFFICULTY_MAX = 4;
 const static int DIFFICULTY_MIN = 0;
 
-
 #endif

@@ -23,5 +23,6 @@ public:
 	void HowToPlay();
 	void PlayingMainMenu();
 	void MainMenuConsole(COORD pos, int cur);
+	void MadeByTXMAY();
 };
 #endif

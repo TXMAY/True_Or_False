@@ -32,5 +32,7 @@ public:
 	void GameOver();
 	void PlayingGame();
 	void SetDifficulty();
+	void MadeByTXMAY();
+	void PrintInfo();
 };
 #endif

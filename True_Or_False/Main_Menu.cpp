@@ -4,7 +4,7 @@
 
 void MainMenu::Setscreen()
 {
-	system("mode con cols=87 lines=16 | title True Or False");
+	system("mode con cols=87 lines=17 | title True Or False");
 }
 void MainMenu::PrintMainMenu()
 {
@@ -18,15 +18,16 @@ void MainMenu::PrintMainMenu()
 	std::cout << ("  #     ##      #  #    #####      #   #   ##         #####   #  #    #    ###    #####") << std::endl;
 	std::cout << ("  #     #       #  #    #          #   #   #          #       #  #    #       #   #    ") << std::endl;
 	std::cout << ("  #     #        ## #    ###        ###    #          #        ## #   #    ###     ### ") << std::endl;
-	pos = { 36,10 };
+	pos = { 38,10 };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-	std::cout << ("  게임시작\n") << std::endl;
-	pos = { 36,12 };
+	std::cout << ("게임시작\n") << std::endl;
+	pos = { 38,12 };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-	std::cout << ("  게임방법\n") << std::endl;
-	pos = { 38,14 };
+	std::cout << ("게임방법\n") << std::endl;
+	pos = { 40,14 };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-	std::cout << ("  옵션") << std::endl;
+	std::cout << ("옵션") << std::endl;
+	MadeByTXMAY();
 }
 void MainMenu::MainMenuConsole(COORD pos, int cur)
 {
@@ -51,6 +52,7 @@ void MainMenu::HowToPlay()
 	std::cout << "           수식을 보고 그 식이 참인지 거짓인지를 맞춰주세요.(← : 참, → : 거짓)         " << std::endl;
 	std::cout << "                    라이프는 3개이며, 3초내에 정답을 맞춰야 합니다.                    " << std::endl;
 	std::cout << "    정답을 맞출수록 제한 시간이 짧아집니다(easy : -0.1, normal : -0.2, hard : -0.3).   " << std::endl;
+	MadeByTXMAY();
 	while (true)
 	{
 		if (GetAsyncKeyState(VK_ESCAPE) & 0x8000)
@@ -110,12 +112,12 @@ void MainMenu::SetMainMenu()
 		default:
 			break;
 		}
-		if (menu == 1 && (GetAsyncKeyState(VK_RETURN) & 0x8000))
+		if (menu == 1 && (GetAsyncKeyState(VK_RETURN) & 0x0001))
 		{
 			system("cls");
 			break;
 		}
-		if (menu == 2 && (GetAsyncKeyState(VK_RETURN) & 0x8000))
+		if (menu == 2 && (GetAsyncKeyState(VK_RETURN) & 0x0001))
 		{
 			system("cls");
 			HowToPlay();
@@ -128,4 +130,10 @@ void MainMenu::PlayingMainMenu()
 	Setscreen();
 	PrintMainMenu();
 	SetMainMenu();
+}
+void MainMenu::MadeByTXMAY()
+{
+	pos = { 0,15 };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	std::cout << ("Made by TXMAY") << std::endl;
 }
