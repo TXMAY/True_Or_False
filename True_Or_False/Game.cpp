@@ -5,8 +5,7 @@
 void Game::SetDifficulty()
 {
 	difficulty = NORMAL;
-	pos = { 35,5 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(35, 5);
 	std::cout << ("난이도 선택") << std::endl;
 	MadeByTXMAY();
 	while (true)
@@ -30,18 +29,15 @@ void Game::SetDifficulty()
 		switch (difficulty)
 		{
 		case EASY:
-			pos = { 36,10 };
-			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+			SetPosition(36, 10);
 			std::cout << (" ◀ easy ▶ ") << std::endl;
 			break;
 		case NORMAL:
-			pos = { 36,10 };
-			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+			SetPosition(36, 10);
 			std::cout << ("◀ normal ▶") << std::endl;
 			break;
 		case HARD:
-			pos = { 36,10 };
-			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+			SetPosition(36, 10);
 			std::cout << (" ◀ hard ▶ ") << std::endl;
 			break;
 		default:
@@ -117,14 +113,11 @@ void Game::SetOperator()
 }
 void Game::PrintRandomValue()
 {
-	pos = { 36,5 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(36, 5);
 	std::cout << val1;
-	pos = { 39,5 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(39, 5);
 	std::cout << str_oper;
-	pos = { 42,5 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(42, 5);
 	std::cout << val2 << std::endl;
 }
 void Game::GetKey()
@@ -171,12 +164,10 @@ void Game::PrintAnswer()
 	default:
 		break;
 	}
-	pos = { 38,10 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(38, 10);
 	if (timer <= 0)
 	{
-		pos = { 36,10 };
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+		SetPosition(36, 10);
 		std::cout << "시간 초과" << std::endl;
 		--life;
 	}
@@ -211,14 +202,11 @@ void Game::PrintAnswer()
 void Game::GameOver()
 {
 	system("cls");
-	pos = { 36,5 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(36, 5);
 	std::cout << "Game over!" << std::endl;
-	pos = { 36,7 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(36, 7);
 	std::cout << "Score : " << score << std::endl;
-	pos = { 22,9 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(22, 9);
 	std::cout << "메인 메뉴로 돌아가려면 enter를 누르세요." << std::endl;
 	MadeByTXMAY();
 	while (true)
@@ -253,13 +241,6 @@ void Game::PlayingGame()
 }
 void Game::PrintInfo()
 {
-	pos = { 0,0 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(0, 0);
 	std::cout << "Score : " << score << ("\nLife : ") << life << std::endl;
-}
-void Game::MadeByTXMAY()
-{
-	pos = { 0,15 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-	std::cout << ("Made by TXMAY") << std::endl;
 }

@@ -20,8 +20,6 @@ private:
 	double timer;
 	double minus_time;
 private:
-	COORD pos;
-private:
 	std::string str_oper;
 public:
 	void SetRandomValue();
@@ -32,7 +30,6 @@ public:
 	void GameOver();
 	void PlayingGame();
 	void SetDifficulty();
-	void MadeByTXMAY();
 	void PrintInfo();
 };
 #endif

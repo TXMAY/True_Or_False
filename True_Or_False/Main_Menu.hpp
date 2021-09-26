@@ -11,8 +11,6 @@ private:
 	int menu;
 	int cursor;
 private:
-	COORD pos;
-private:
 	HANDLE ConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 private:
 	CONSOLE_CURSOR_INFO ConsoleCursor;
@@ -23,6 +21,5 @@ public:
 	void HowToPlay();
 	void PlayingMainMenu();
 	void MainMenuConsole(COORD pos, int cur);
-	void MadeByTXMAY();
 };
 #endif

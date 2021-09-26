@@ -11,21 +11,17 @@ void MainMenu::PrintMainMenu()
 	ConsoleCursor.bVisible = 0;
 	ConsoleCursor.dwSize = 1;
 	SetConsoleCursorInfo(ConsoleHandle, &ConsoleCursor);
-	pos = { 0,4 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(0, 4);
 	std::cout << ("#####                    ###        ###               #####           #    ###     ### ") << std::endl;
 	std::cout << ("  #     # ###   #  #    #   #      #   #   # ###      #        ##     #   #       #   #") << std::endl;
 	std::cout << ("  #     ##      #  #    #####      #   #   ##         #####   #  #    #    ###    #####") << std::endl;
 	std::cout << ("  #     #       #  #    #          #   #   #          #       #  #    #       #   #    ") << std::endl;
 	std::cout << ("  #     #        ## #    ###        ###    #          #        ## #   #    ###     ### ") << std::endl;
-	pos = { 38,10 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(38, 10);
 	std::cout << ("게임시작\n") << std::endl;
-	pos = { 38,12 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(38, 12);
 	std::cout << ("게임방법\n") << std::endl;
-	pos = { 40,14 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(40, 14);
 	std::cout << ("옵션") << std::endl;
 	MadeByTXMAY();
 }
@@ -46,8 +42,7 @@ void MainMenu::MainMenuConsole(COORD pos, int cur)
 }
 void MainMenu::HowToPlay()
 {
-	pos = { 0,5 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	SetPosition(0, 5);
 	std::cout << "                        게임이 시작되면 화면에 수식이 나타납니다.                      " << std::endl;
 	std::cout << "           수식을 보고 그 식이 참인지 거짓인지를 맞춰주세요.(← : 참, → : 거짓)         " << std::endl;
 	std::cout << "                    라이프는 3개이며, 3초내에 정답을 맞춰야 합니다.                    " << std::endl;
@@ -130,10 +125,4 @@ void MainMenu::PlayingMainMenu()
 	Setscreen();
 	PrintMainMenu();
 	SetMainMenu();
-}
-void MainMenu::MadeByTXMAY()
-{
-	pos = { 0,15 };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-	std::cout << ("Made by TXMAY") << std::endl;
 }
