@@ -125,12 +125,12 @@ void Game::GetKey()
 	timer = 3.0 - minus_time;
 	while (timer >= 0)
 	{
-		if (GetAsyncKeyState(VK_LEFT) & 0x0001)
+		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 		{
 			key = true;
 			break;
 		}
-		if (GetAsyncKeyState(VK_RIGHT) & 0x0001)
+		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 		{
 			key = false;
 			break;

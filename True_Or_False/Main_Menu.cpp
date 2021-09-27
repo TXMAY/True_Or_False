@@ -43,8 +43,8 @@ void MainMenu::MainMenuConsole(COORD pos, int cur)
 void MainMenu::HowToPlay()
 {
 	SetPosition(0, 5);
-	std::cout << "                        게임이 시작되면 화면에 수식이 나타납니다.                      " << std::endl;
-	std::cout << "           수식을 보고 그 식이 참인지 거짓인지를 맞춰주세요.(← : 참, → : 거짓)         " << std::endl;
+	std::cout << "                   게임이 시작되면 화면에 비교 연산이 나타납니다.                      " << std::endl;
+	std::cout << "      비교 연산을 보고 그 식이 참인지 거짓인지를 맞춰주세요.(← : 참, → : 거짓)         " << std::endl;
 	std::cout << "                    라이프는 3개이며, 3초내에 정답을 맞춰야 합니다.                    " << std::endl;
 	std::cout << "    정답을 맞출수록 제한 시간이 짧아집니다(easy : -0.1, normal : -0.2, hard : -0.3).   " << std::endl;
 	MadeByTXMAY();
@@ -107,12 +107,12 @@ void MainMenu::SetMainMenu()
 		default:
 			break;
 		}
-		if (menu == 1 && (GetAsyncKeyState(VK_RETURN) & 0x0001))
+		if (menu == 1 && (GetAsyncKeyState(VK_RETURN) & 0x8000))
 		{
 			system("cls");
 			break;
 		}
-		if (menu == 2 && (GetAsyncKeyState(VK_RETURN) & 0x0001))
+		if (menu == 2 && (GetAsyncKeyState(VK_RETURN) & 0x8000))
 		{
 			system("cls");
 			HowToPlay();
