@@ -10,5 +10,6 @@ int main()
 	{
 		mm.PlayingMainMenu();
 		game.PlayingGame();
+		Sleep(50);
 	}
 }

@@ -25,6 +25,6 @@ static void SetPosition(short x, short y)
 static void MadeByTXMAY()
 {
 	SetPosition(0, 15);
-	std::cout << ("Made by TXMAY") << std::endl;
+	std::cout << (" Made by TXMAY") << std::endl;
 }
 #endif
